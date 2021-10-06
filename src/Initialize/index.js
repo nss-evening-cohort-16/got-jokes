@@ -1,37 +1,28 @@
 import React, { useState } from 'react';
+// import getJoke from '../api/data/jokeData';
 
 function Initialize() {
-  const [domWriting, setDomWriting] = useState('Nothing Here!');
+  const [btnText, setBtnText] = useState('Get a Joke');
+  // getJoke().then(console.warn);
+  console.warn(setBtnText);
 
-  const handleClick = (e) => {
-    console.warn(`You clicked ${e.target.id}`);
-    setDomWriting(`You clicked ${e.target.id}! Check the Console!`);
+  const setButton = (text) => {
+    setBtnText(text);
   };
 
   return (
     <div className="App">
-      <h2>INSIDE APP COMPONENT</h2>
-      <div>
+      {btnText === 'Get a Joke' ? (
+        <p>Get the joke man!</p>
+      ) : (
         <button
+          onClick={() => setButton('Get Another Joke')}
+          className="btn btn-success"
           type="button"
-          id="this-button"
-          className="btn btn-info"
-          onClick={handleClick}
         >
-          I am THIS button
+          {btnText}
         </button>
-      </div>
-      <div>
-        <button
-          type="button"
-          id="that-button"
-          className="btn btn-primary mt-3"
-          onClick={handleClick}
-        >
-          I am THAT button
-        </button>
-      </div>
-      <h3>{domWriting}</h3>
+      )}
     </div>
   );
 }
