@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import getJoke from '../api/data/jokeData';
+import '../styles/globals/index.scss';
 
 function Initialize() {
   const [btnText, setBtnText] = useState('Get a Joke');
@@ -18,22 +19,26 @@ function Initialize() {
 
   return (
     <div className="App">
-      <div className="main-container">
-        <h1>{joke.setup}</h1>
-        <h1>{btnText !== 'Get Punchline' ? joke.punchline : ''}</h1>
-        {btnText === 'Get a Joke' || btnText === 'Get Another Joke' ? (
-          <button onClick={getAJoke} className="jokeBtn" type="button">
-            {btnText}
-          </button>
-        ) : (
-          <button
-            onClick={() => setBtnText('Get Another Joke')}
-            className="jokeBtn"
-            type="button"
-          >
-            {btnText}
-          </button>
-        )}
+      <div className="card" style={{ width: '18rem' }}>
+        <div className="card-body">
+          <h5 className="card-title">Joke Generator</h5>
+          <hr />
+          <h3>{joke.setup}</h3>
+          <h1>{btnText !== 'Get Punchline' ? joke.punchline : ''}</h1>
+          {btnText === 'Get a Joke' || btnText === 'Get Another Joke' ? (
+            <button onClick={getAJoke} className="btn btn-primary" type="button">
+              {btnText}
+            </button>
+          ) : (
+            <button
+              onClick={() => setBtnText('Get Another Joke')}
+              className="btn btn-primary"
+              type="button"
+            >
+              {btnText}
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );
